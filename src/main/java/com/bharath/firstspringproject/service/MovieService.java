@@ -18,14 +18,14 @@ public class MovieService {
     //Create
     public Movie create(Movie movie)
     {
-        if(movie == null) throw new RuntimeException("No movie data recieved to add movie");
+        if(movie == null) throw new RuntimeException("Invalid Movie");
         return movieRepository.save(movie);
     }
 
     //Readbyid
     public Movie read(Long id){
         return movieRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Error"));
+                .orElseThrow(() -> new RuntimeException("Movie Not Found"));
     }
 
     //fetch all records
@@ -38,7 +38,7 @@ public class MovieService {
     public void update(Long id, Movie update)
     {
         if (id == null || update ==null) {
-            throw new RuntimeException("Error");
+            throw new RuntimeException("Invalid Movie");
         }
         if (movieRepository.existsById(id))
         {
@@ -49,14 +49,14 @@ public class MovieService {
             movieRepository.save(movie);
         }
         else {
-            throw new RuntimeException("Update error");
+            throw new RuntimeException("Movie Not Found");
         }
     }
     //delete
 
     public void delete(Long id)
     {
-        if (id == null) throw new RuntimeException("Error");
+        if (id == null) throw new RuntimeException("Movie Not Found");
         movieRepository.deleteById(id);
     }
 }
