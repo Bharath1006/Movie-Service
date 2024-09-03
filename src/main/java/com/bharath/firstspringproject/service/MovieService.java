@@ -1,5 +1,7 @@
 package com.bharath.firstspringproject.service;
 
+import com.bharath.firstspringproject.exception.InvalidDataException;
+import com.bharath.firstspringproject.exception.NotFoundException;
 import com.bharath.firstspringproject.model.Movie;
 import com.bharath.firstspringproject.repository.MovieRepository;
 import jakarta.transaction.Transactional;
@@ -18,14 +20,14 @@ public class MovieService {
     //Create
     public Movie create(Movie movie)
     {
-        if(movie == null) throw new RuntimeException("Invalid Movie");
+        if(movie == null) throw new InvalidDataException("Invalid Movie : null");
         return movieRepository.save(movie);
     }
 
     //Readbyid
     public Movie read(Long id){
         return movieRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Movie Not Found"));
+                .orElseThrow(() -> new NotFoundException("Movie Not Found :" + id));
     }
 
     //fetch all records
@@ -38,7 +40,7 @@ public class MovieService {
     public void update(Long id, Movie update)
     {
         if (id == null || update ==null) {
-            throw new RuntimeException("Invalid Movie");
+            throw new InvalidDataException("Invalid Movie : null");
         }
         if (movieRepository.existsById(id))
         {
@@ -49,14 +51,16 @@ public class MovieService {
             movieRepository.save(movie);
         }
         else {
-            throw new RuntimeException("Movie Not Found");
+            throw new NotFoundException("Movie Not Found :" + id);
         }
     }
     //delete
 
     public void delete(Long id)
     {
-        if (id == null) throw new RuntimeException("Movie Not Found");
+        if(id == null) throw new InvalidDataException("Invalid Movie : null");
+        if(movieRepository.existsById(id))
         movieRepository.deleteById(id);
+        else throw new NotFoundException("Movie Not Found :" + id);
     }
 }
