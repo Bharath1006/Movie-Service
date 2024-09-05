@@ -84,7 +84,7 @@
 						</exclude>
 					</excludes>
 					<image>
-						<name>docker.io/bharath1006/${project.artifactId}:${project.version}</name>
+						<name>docker.io/${project.artifactId}:${project.version}</name>
 						<publish>true</publish>
 					</image>
 					<docker>
