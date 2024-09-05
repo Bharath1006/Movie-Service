@@ -77,14 +77,8 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
 					<image>
-						<name>docker.io/${project.artifactId}:${project.version}</name>
+						<name>docke.io/bharath1006/${project.artifactId}:${project.version}</name>
 						<publish>true</publish>
 					</image>
 					<docker>
@@ -93,6 +87,12 @@
 							<password>${env.DOCKERHUB_PWD}</password>
 						</publishRegistry>
 					</docker>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
 				</configuration>
 			</plugin>
 		</plugins>
