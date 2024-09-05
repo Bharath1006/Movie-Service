@@ -78,7 +78,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<image>
-						<name>docke.io/bharath1006/${project.artifactId}:${project.version}</name>
+						<name>docker.io/bharath1006/${project.artifactId}:${project.version}</name>
 						<publish>true</publish>
 					</image>
 					<docker>
