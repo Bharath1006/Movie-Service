@@ -47,7 +47,6 @@ public class MovieService {
             Movie movie = movieRepository.getReferenceById(id);
             movie.setName(update.getName());
             movie.setDirector(update.getDirector());
-            movie.setActors(update.getActors());
             movieRepository.save(movie);
         }
         else {
